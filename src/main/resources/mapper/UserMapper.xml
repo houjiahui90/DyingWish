@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.houjiahui.DyingWish.mapper.UserMapper">
+
+    <resultMap id="userResult" type="User">
+        <id property="id" column="id" />
+    </resultMap>
+    <sql id="userColumns">
+		a.id
+	</sql>
+    <select id="get" resultType="User">
+        SELECT
+        <include refid="userColumns"/>
+        FROM User a
+        WHERE a.id = #{id}
+    </select>
+    <select id="selectUser" resultMap="userResult" parameterType="String">
+        SELECT
+        <include refid="userColumns"/>
+         FROM user a where a.id='1'
+    </select>
+    <select id="testSql" resultType="User" parameterType="String">
+        SELECT * FROM User
+    </select>
+
+</mapper>
